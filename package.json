@@ -1,0 +1,49 @@
+{
+	"name": "log-csharp-variable",
+	"displayName": "Log Csharp Variable",
+	"description": "Log Csharp Variable",
+	"version": "0.0.1",
+	"publisher": "alexnguyeen03",
+	"repository": "https://github.com/alexnguyen03/Log-Csharp-Variable",
+	"engines": {
+		"vscode": "^1.96.2"
+	},
+	"categories": [
+		"Other",
+		"Debuggers",
+		"Keymaps",
+		"Testing"
+	],
+	"activationEvents": [],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.LogC#Variable",
+				"title": "Log C# Variable"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "extension.LogC#Variable",
+				"key": "f6",
+				"mac": "f6",
+				"when": "editorTextFocus"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint \"src/**/*.ts\"",
+		"watch": "tsc -watch -p ./"
+	},
+	"devDependencies": {
+		"@types/node": "^16.18.34",
+		"@types/vscode": "^1.73.0",
+		"@typescript-eslint/eslint-plugin": "^6.7.0",
+		"@typescript-eslint/parser": "^6.7.0",
+		"eslint": "^8.26.0",
+		"typescript": "^5.3.2"
+	}
+}
