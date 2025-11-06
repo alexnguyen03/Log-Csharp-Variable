@@ -2,7 +2,7 @@
   "name": "log-csharp-variable",
   "displayName": "Log Csharp Variable",
   "description": "Log C# variables with one keypress. Smart, safe, beautiful, and fully customizable.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "alexnguyeen03",
   "repository": "https://github.com/alexnguyen03/Log-Csharp-Variable",
   "engines": {
