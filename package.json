@@ -1,49 +1,142 @@
 {
-	"name": "log-csharp-variable",
-	"displayName": "Log Csharp Variable",
-	"description": "Log Csharp Variable",
-	"version": "0.0.1",
-	"publisher": "alexnguyeen03",
-	"repository": "https://github.com/alexnguyen03/Log-Csharp-Variable",
-	"engines": {
-		"vscode": "^1.96.2"
-	},
-	"categories": [
-		"Other",
-		"Debuggers",
-		"Keymaps",
-		"Testing"
-	],
-	"activationEvents": [],
-	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "extension.LogC#Variable",
-				"title": "Log C# Variable"
-			}
-		],
-		"keybindings": [
-			{
-				"command": "extension.LogC#Variable",
-				"key": "f6",
-				"mac": "f6",
-				"when": "editorTextFocus"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint \"src/**/*.ts\"",
-		"watch": "tsc -watch -p ./"
-	},
-	"devDependencies": {
-		"@types/node": "^16.18.34",
-		"@types/vscode": "^1.73.0",
-		"@typescript-eslint/eslint-plugin": "^6.7.0",
-		"@typescript-eslint/parser": "^6.7.0",
-		"eslint": "^8.26.0",
-		"typescript": "^5.3.2"
-	}
+  "name": "log-csharp-variable",
+  "displayName": "Log Csharp Variable",
+  "description": "Log C# variables with one keypress. Smart, safe, beautiful, and fully customizable.",
+  "version": "1.0.0",
+  "publisher": "alexnguyeen03",
+  "repository": "https://github.com/alexnguyen03/Log-Csharp-Variable",
+  "engines": {
+    "vscode": "^1.96.2"
+  },
+  "categories": [
+    "Other",
+    "Debuggers",
+    "Keymaps",
+    "Testing"
+  ],
+  "keywords": [
+    "c#",
+    "debug",
+    "console",
+    "log",
+    "dotnet",
+    "json",
+    "serialize"
+  ],
+  "activationEvents": [
+    "onCommand:extension.LogCSharpVariable"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.LogCSharpVariable",
+        "title": "💫Log C# Variable: Log me!!!"
+      },
+      {
+        "command": "extension.openLogCSharpVariableSettings",
+        "title": "💫Log C# Variable: Go to Settings"
+      },
+      {
+        "command": "extension.toggleGeneratedLog",
+        "title": "💫Log C# Variable: Toggle Generated Log"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "extension.LogCSharpVariable",
+          "group": "navigation",
+          "when": "editorLangId == csharp"
+        },
+        {
+          "command": "extension.toggleGeneratedLog",
+          "group": "navigation",
+          "when": "editorLangId == csharp"
+        },
+        {
+          "command": "extension.openLogCSharpVariableSettings",
+          "group": "navigation",
+          "when": "editorLangId == csharp"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "extension.LogCSharpVariable"
+        },
+        {
+          "command": "extension.toggleGeneratedLog"
+        },
+        {
+          "command": "extension.openLogCSharpVariableSettings"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Log C# Variable",
+      "properties": {
+        "logCSharpVariable.logPrefix": {
+          "type": "string",
+          "default": "APP",
+          "description": "Prefix to display before each log"
+        },
+        "logCSharpVariable.colorizeLogs": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable colored console logs"
+        },
+        "logCSharpVariable.logTemplate": {
+          "type": "string",
+          "default": "{prefix}{type}\\n{varLine}\\n{timeLine} at {pathLine}",
+          "description": "Custom log template. Available placeholders: {prefix}, {type}, {varLine}, {timeLine}, {pathLine}, {reset}, {bgColor}",
+          "markdownDescription": "### Custom Log Template\n  Use placeholders:\n  - `{prefix}` → [APP]\n  - `{type}` → [DEBUG]\n  - `{varLine}` → `{nameof(myVar)} = {myVar}`\n  - `{timeLine}` → `{DateTime.Now:yyyy-MM-dd HH:mm:ss}`\n  - `{pathLine}` → `C:/project/file.cs(42,1)`\n\n **Config your template here!**"
+        },
+        "logCSharpVariable.serializeObjects": {
+          "type": "boolean",
+          "default": true,
+          "description": "Auto serialize object using JsonSerializer.Serialize() for object (not primitive type)"
+        },
+        "logCSharpVariable.jsonOptions": {
+          "type": "string",
+          "default": "Indented",
+          "enum": [
+            "Indented",
+            "SingleLine"
+          ],
+          "enumDescriptions": [
+            "Pretty print with indentation",
+            "Compact single-line output"
+          ],
+          "description": "Config JsonSerializerOptions: Indented, SingleLine"
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "extension.LogCSharpVariable",
+        "key": "f6",
+        "mac": "f6",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+f6",
+        "command": "extension.toggleGeneratedLog",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "lint": "eslint \"src/**/*.ts\"",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^16.18.34",
+    "@types/vscode": "^1.73.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
+    "@typescript-eslint/parser": "^6.7.0",
+    "eslint": "^8.26.0",
+    "typescript": "^5.3.2"
+  }
 }
