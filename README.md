@@ -91,7 +91,7 @@ code --install-extension logcsharpvariable-1.0.0.vsix
 
 **Result:**
 
-```json
+```plain
 [APP][ERROR]
 st = {
   "Name": "John Doe",
